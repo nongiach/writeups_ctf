@@ -24,7 +24,7 @@ As we can see here with the [plasma](https://github.com/plasma-disassembler/plas
 
 ## Machine Learning Model
 
-A basic 4 layers Neural Network using sigmoid and relu as activation functions, there is only one output cell to say the input contains the flag or not.
+A basic homemade 4 layers Neural Network using sigmoid and relu as activation functions, there is only one output cell to say the input contains the flag or not.
 
 ## Instrumentation
 
