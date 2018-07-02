@@ -11,7 +11,7 @@ This challenge is about reversing a gameboy game to find a flag.
 
 | ![screen_](screen_geode.PNG) |
 
-Solution: grep -rin "cp.*," code.asm.s | grep -o "[0-9A-F]*$" | xxd -r -ps
+Solution: `grep -rin "cp.*," code.asm.s | grep -o "[0-9A-F]*$" | xxd -r -ps`
 
 Flag: tH4TZ_4N_e4SY_NDH_fL4G
 
