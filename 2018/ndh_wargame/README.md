@@ -1,5 +1,5 @@
 
-[HexpressoTeam](https://twitter.com/HexpressoCTF) finished first at Nuit Du Hack ctf this year, here are our writeups.
+we finished first at Nuit Du Hack ctf this year, here are our writeups. -- [HexpressoTeam](https://twitter.com/HexpressoCTF)
 
 | Chall | description |
 | --- | --- |
