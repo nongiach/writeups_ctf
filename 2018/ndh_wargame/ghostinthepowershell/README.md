@@ -1,15 +1,15 @@
 
-# NDH wargame 2018 : reverse 850
+# NDH wargame 2018 : reverse 50
 
 **Category:** reverse |
-**Name:** dans la vallee |
+**Name:** ghostinthepowershell |
 **Solves:** 0 |
-**Description:** Reverse a machine learning model embeded in an ELF binary.
+**Description:** Reverse an obfuscated powershell script.
 
 ___
 ## TLDR
 
-This challenge is about reversing a powershell script to find a flag. The was asking for a password from the standard input and we have to find this password.
+This challenge is about reversing a obfuscated powershell script to find a flag. The was asking for a password from the standard input and we have to find this password.
 
 Here is an extract of the 29KB powershell script, there are a lot of weird things happening in there.
 ```
