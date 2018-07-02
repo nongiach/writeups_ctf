@@ -19,7 +19,7 @@ Flag: NDH{GR4DIEN7_D3SCEN7_4EVER}
 As we can see here with the [plasma](https://github.com/plasma-disassembler/plasma) tool, the binary:
 - Expects a PNG filename in arguments
 - Uses the *read_png* function to open the PNG and perform some check like *png_get_image_height() == 284 && png_get_image_width() == 168 && png_get_bit_depth() == 8 && png_get_color_type() == 2*
-- Uses the *eval_model* that loads a machine learning model embeded in the ELF and evalutates if the PNG contains the flag or not, then returns  a float value between 0 or 1
+- Uses the *eval_model* function that loads a machine learning model embeded in the ELF and evalutates if the PNG contains the flag or not, then returns  a float value between 0 and 1
 - if float_value > 0.9 then prints "You got it!" else prints "Wrong passwords".
 
 | plasma adam_not_eve | plasma -x read_png adam_not_eve |
