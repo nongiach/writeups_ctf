@@ -20,7 +20,7 @@ M-bM-^VM-^HM-bM-^VM-^HM-bM-^VM-^HM-bM-^VM-^HM-bM-^VM-^HM-bM-^VM-^HM-bM-^VM-^HM-b
 
 # Solution:
 
-type "Set-PSDebug -Trace 2" before running the script to enable debugging, it will print out all used variables value.
+type "Set-PSDebug -Trace 2" before running the script to enable debugging, it will print out all used variables values.
 
 ![flag](ghostinthepowershell.png)
 
