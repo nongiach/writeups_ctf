@@ -1,0 +1,11 @@
+http://bgb.bircd.org/
+
+Access Granted => 0x554
+Wrong password => 0x569
+b *0x51c
+051C 21 69 05         ld   hl,0569
+
+grep -rin "cp.*," code.asm.s | grep -o "[0-9A-F]*$" > all_cmp.txt
+echo $(cat all_cmp.txt) | sed 's/ //g' | xxd -r -ps
+
+tH4TZ_4N_e4SY_NDH_fL4G
