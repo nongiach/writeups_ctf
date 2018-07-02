@@ -46,7 +46,6 @@ def scan_column(args):
 def scan(pixel_size):
     global test, text_pix, final, final_pix
     p = Pool(5)
-/bin/bash: q: command not found
     for ix in range(0, 284, pixel_size * nbr_column):
         to_swap = p.map(scan_column, [  (test, x, pixel_size)
             for x in range(ix, ix + pixel_size * nbr_column, pixel_size) ])
