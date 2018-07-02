@@ -7,7 +7,7 @@
 
 ___
 ## TLDR
-The binary prints "You got it!" or "Wrong password" if the given png file contains the flag or not. We solved this challenge by instrumenting this binary to use embeded machine learning model for analyzing each pixel one by one. Here is the result:
+This challenge is about reversing a machine learning model embeded in an ELF binary to find the flag. The binary prints "You got it!" or "Wrong password" if the given png file contains the flag or not. We solved this challenge by instrumenting this binary to use the embeded machine learning model for analyzing each pixel one by one. Here is the result:
 
 | ![flag](flag.png) | ![quick_flag](quick_flag.png) |
 
@@ -15,31 +15,36 @@ Flag: NDH{GR4DIEN7_D3SCEN7_4EVER}
 
 
 ## Reverse
-This solution doesn't involve ASLR leaking and libc is not used. This solution allocates two pages using code reuse, one page to stack pivot and the other page to execute a shellcode... text pointer dereferencing to bypass ASLR. [exploit.py](/exploit.py)
 
-## Pass the checks
+As we can see here with the [plasma](https://github.com/plasma-disassembler/plasma) tool, the binary:
+- Expects a PNG filename in arguments
+- Uses the *read_png* function to open the PNG and perform some check like *png_get_image_height() == 284 && png_get_image_width() == 168 && png_get_bit_depth() == 8 && png_get_color_type() == 2*
+- Uses the *eval_model* that loads a machine learning model embeded in the ELF and evalutates if the PNG contains the flag or not, then returns  a float value between 0 or 1
+- if float_value > 0.9 then prints "You got it!" else prints "Wrong passwords".
+
+## Machine Learning Model
+
+A basic 4 layers Neural Network using sigmoid and relu as activation functions, there is only one output cell to say the input contains the flag or not.
 
 ## Instrumentation
 
-We were given a x86_64 linux binary, PIE and NX were active, the binary read repeatedly 4 bytes from stdin and executed them as asm bytecode.
-Below a description of the binary execution:
-```
-Read four bytes from stdin (read)
-Allocate one page (mmap) .. one page = 4096 bytes
-Write our four bytes on the allocated page (mov)
-Set the page executable (mprotect)
-Execute our four bytes 4096 times in a loop (call rbx)
-Replay all again
-```
-We give input to the program and he evaluates them 4 bytes per 4 bytes, using this vector we have to take full control of the remote server. The funny thing is that the number of asm instructions fitting in only 4 bytes are kind of limited so we will have hack a bit.
+At first we used this gdb script to breakpoint after the evaluation and print the float value, but it was too slow so we asked @XeR to manually rewritte the binary to write the float value before exiting. [@XeR](https://github.com/XeR) is a cheap tool and more optmimized than frida or gdb, pintool or whatever...
+
+| [gdb script](gdb.gdbinit) | [manually rewrited binary](fast) | [original binary](adam_not_eve) |
+| --- | --- | --- |
 
 ## Solution
 
-Let me describe how the magic happened for me.
-First, I used unused registers **r13, r14, r15** to create persistence between all different successive evaluations of 4 bytes, these registers allowed us to load a text pointer (**saved_rip**)  from the stack **pop r14; push r14**, and then we dereference it to point to a useful code **"inc r14; ret" * offset_to_code_reuse**. Because the binary was packaged with helpful functions like **allocate_page** and **make_page_executable** we pretty much only needed to call them **call r14** to create two pages. Then we fill the two pages, the first with a shellcode and the other with one ROP gadget to ease the call of **make_page_executable**. Once the shellcode is executable we just need to **ret** in it. There is more to the story, for example all instructions are executed 4096 times but every inconvenience seen from the right angle is helpful. It's time for you to read some python [exploit.py](/exploit.py)
+Using a bit of python we generate a 168 by 284 pixels black PNG and evaluate this black PNG with the model, the returned value will be our threshold. Then we change a pixel in the image if the prediction for this new image is higher than the threshold then the new pixel is saved.
 
-This is the instruction use to fill pages with the data we want:
-![mov_r15](plasma.PNG)
+```sh
+threshold = evaluate(full_black_png)
+
+foreach pixel of full_black_png:
+  pixel = white_color
+  if threshold < evaluate(full_black_png_with_one_white_pixel):
+    final_png.pixel = white_color
+```
 
 ----
 [HexpressoTeam](https://twitter.com/HexpressoCTF)
