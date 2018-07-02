@@ -3,9 +3,9 @@
 
 | Chall | description |
 | --- | --- |
-| dans_la_vallee | reverse a machine learning model. |
-| geodegb | reverse a game boy game. |
-| ghostinthepowershell | reverse an obfuscated powershell script. |
+| [dans_la_vallee](https://github.com/nongiach/writeups_ctf/blob/master/2018/ndh_wargame/dans_la_vallee/README.md) | reverse a machine learning model. |
+| [geodegb](https://github.com/nongiach/writeups_ctf/blob/master/2018/ndh_wargame/geodegb) | reverse a game boy game. |
+| [ghostinthepowershell](https://github.com/nongiach/writeups_ctf/tree/master/2018/ndh_wargame/ghostinthepowershell) | reverse an obfuscated powershell script. |
 
 | Players |
 | --- |
