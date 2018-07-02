@@ -35,7 +35,7 @@ At first we used this gdb script to breakpoint after the evaluation and print th
 
 ## Solution
 
-Using a bit of python we generate a 168 by 284 pixels black PNG and evaluate this black PNG with the model, the returned value will be our threshold. Then we change a pixel in the image if the prediction for this new image is higher than the threshold then the new pixel is saved.
+Using a bit of python we generate a 168 by 284 pixels black PNG and evaluate this black PNG with the model, the returned value will be our threshold. Then we change a pixel in the image, if the neural network output for this new image is higher than the threshold then the new pixel is saved.
 
 ```sh
 threshold = evaluate(full_black_png)
