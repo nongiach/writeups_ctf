@@ -60,3 +60,7 @@ As you can see one shell line was enough to solve this easy challenge.
 
 ----
 [HexpressoTeam](https://twitter.com/HexpressoCTF)
+
+Players: [zma](https://twitter.com/_zm_a), [zbetcheckin](https://twitter.com/zbetcheckin), [XeR](https://github.com/XeR), [rawger](https://twitter.com/_rawger), [pix](https://twitter.com/pix), [jet](https://twitter.com/___jet_), [dev2lead](https://twitter.com/dev2lead), [chaignc](https://twitter.com/chaignc), [bitk](https://twitter.com/BitK_), Beuc
+
+![scoreboard](https://raw.githubusercontent.com/nongiach/writeups_ctf/master/2018/ndh_wargame/scoreboard.jpg)
