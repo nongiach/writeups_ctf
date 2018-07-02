@@ -7,10 +7,12 @@
 
 ___
 ## TLDR
-The binary prints "You got it!" or "Wrong password" if the given png file contains the flag or not. We solved this challenge by instrumenting this binary and used it to analyze each pixel one by one.
-![flag](flag.png), ![quick_flag](quick_flag.png)
+The binary prints "You got it!" or "Wrong password" if the given png file contains the flag or not. We solved this challenge by instrumenting this binary to use embeded machine learning model for analyzing each pixel one by one. Here is the result:
 
-Despite there wasn't a real attack vector InstProf was a very interesting challenge, because I made a lot of mistakes as always but after a lot of computer meditation I SOLVED it.
+| ![flag](flag.png) | ![quick_flag](quick_flag.png) |
+
+Flag: NDH{GR4DIEN7_D3SCEN7_4EVER}
+
 
 ## Reverse
 This solution doesn't involve ASLR leaking and libc is not used. This solution allocates two pages using code reuse, one page to stack pivot and the other page to execute a shellcode... text pointer dereferencing to bypass ASLR. [exploit.py](/exploit.py)
