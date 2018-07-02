@@ -48,7 +48,6 @@ foreach pixel of full_black_png:
     final_png.pixel = white_color
 ```
 
-checkout [simple.py](simple.py)
-
+checkout [simple.py](simple.py) we also have a multihreaded version [gen.py](gen.py)
 ----
 [HexpressoTeam](https://twitter.com/HexpressoCTF)
