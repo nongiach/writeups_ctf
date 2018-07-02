@@ -9,8 +9,6 @@ ___
 ## TLDR
 This challenge is about reversing a machine learning model embeded in an ELF binary to find the flag. The binary prints "You got it!" or "Wrong password" if the given png file contains the flag or not. We solved this challenge by instrumenting this binary to use the embeded machine learning model for analyzing each pixel one by one. Here is the result:
 
-| 
-| --- | --- |
 | ![flag](flag.png) | ![quick_flag](quick_flag.png) |
 
 Flag: NDH{GR4DIEN7_D3SCEN7_4EVER}
