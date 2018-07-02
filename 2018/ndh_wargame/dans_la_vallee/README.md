@@ -22,6 +22,8 @@ As we can see here with the [plasma](https://github.com/plasma-disassembler/plas
 - Uses the *eval_model* that loads a machine learning model embeded in the ELF and evalutates if the PNG contains the flag or not, then returns  a float value between 0 or 1
 - if float_value > 0.9 then prints "You got it!" else prints "Wrong passwords".
 
+| ![plasma.PNG](plasma.PNG) | ![plasma2.PNG](plasma2.PNG) |
+
 ## Machine Learning Model
 
 A basic homemade 4 layers Neural Network using sigmoid and relu as activation functions, there is only one output cell to say the input contains the flag or not.
