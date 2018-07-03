@@ -35,6 +35,44 @@ A basic homemade 4 layers Neural Network using sigmoid and relu as activation fu
 
 At first we used this gdb script to breakpoint after the evaluation and print the float value, but it was too slow so we asked @XeR to manually rewritte the binary to write the float value before exiting. [@XeR](https://github.com/XeR) is a cheap tool and more optmimized than frida or gdb, pintool or whatever...
 
+In order to do so, he wrote a small assembly code that outputs the _xmm0_
+register, no matter how, and exit right afterward.
+
+The following code can be compiled with `gcc -c shell.s`
+```asm
+.intel_syntax
+.global _start
+
+_start:
+	# Store xmm0 on the stack
+	movss [%rsp], %xmm0
+
+	# write(stdout, stack, 8)
+	mov %rax, 1
+	mov %rdi, 1
+	mov %rsi, %rsp
+	mov %rdx, 8
+	syscall
+
+	# exit(0)
+	mov %rax, 60
+	mov %rdi, 0
+	syscall
+```
+
+
+The patch is to be applied at address 0x0E9C. The best way to patch the binary
+is to use the following commands :
+
+```sh
+objcopy -O binary shell.o shell.bin
+dd if=shell.bin of=adam_not_eve bs=1 seek=$[0xE9C] conv=notrunc
+```
+
+Or, if you're a jackass, you can use `objdump` to read the opcodes, and `vim` +
+`xxd` as an hex editor. (`dd` is hard at 5 am)
+
+
 | [gdb script](gdb.gdbinit) | [manually rewrited binary](fast) | [original binary](adam_not_eve) |
 | --- | --- | --- |
 
